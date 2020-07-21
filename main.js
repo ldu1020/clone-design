@@ -26,19 +26,36 @@ let caseIndex = 0;
 function setImg() {
   imgs.style.left = `${firstSetimg}px`;
 }
-
 setImg();
+
+function creatImg(path, name) {
+  let rightImg = document.createElement("img");
+  rightImg.setAttribute("src", path);
+  rightImg.setAttribute("alt", name);
+  rightImg.setAttribute("calss", "bigImg");
+  rightImgArea.appendChild(rightImg);
+  rightImg.style.transition = "all 0.3s ease-in";
+  rightImg.style.opacity = "0";
+  rightImg.style.filter = "blur(3px)";
+
+  setTimeout(() => {
+    rightImg.style.opacity = "1";
+    rightImg.style.filter = "blur(0)";
+  }, 100);
+}
+
 function graphyicSwitch() {
-  switch (caseIndex) {
-    case 0:
-      let rightImg = document.createElement("img");
-      rightImg.setAttribute("src", "imgs/Girl.jpg ");
-      rightImg.setAttribute("class", "willChange");
-      rightImgArea.appendChild(rightImg);
-      break;
-    case 1:
-      console.log(willChange.getAttribute());
-      break;
+  if (index == 0) {
+    creatImg("imgs/Girl.jpg ", "Girl");
+  } else if (index == x || index == -x) {
+    rightImgArea.firstChild.remove();
+    creatImg("imgs/yellowGirl.jpg ", "yellowGirl");
+  } else if (index == x * 2 || index == -x * 2) {
+    rightImgArea.firstChild.remove();
+    creatImg("imgs/blueMan.jpg ", "blueMan");
+  } else if (index == x * 3 || index == -x * 3) {
+    rightImgArea.firstChild.remove();
+    creatImg("imgs/greenMan.jpg ", "greenMan");
   }
 }
 
@@ -47,12 +64,12 @@ graphyicSwitch();
 nextBtn.addEventListener("click", () => {
   console.log("hello");
   nextImg();
-  caseIndex += 1;
   graphyicSwitch();
 });
 preBtn.addEventListener("click", () => {
   console.log("pre");
   preImg();
+  graphyicSwitch();
 });
 
 function nextImg() {

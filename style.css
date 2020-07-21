@@ -47,8 +47,10 @@ button {
 }
 .graphyic img {
   position: absolute;
-  bottom: -40px;
-  left: -30px;
+}
+
+.bigImg {
+  display: none;
 }
 
 /* Banner */
